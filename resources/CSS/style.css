@@ -1,0 +1,657 @@
+/* 
+Orange color: #e67e22
+
+*/
+
+/* --------------------------------------------------- */
+/* BASIC SETUP  */
+/* --------------------------------------------------- */
+* {
+    margin: 0;
+    padding: 0;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+}
+
+body,
+html {
+    background-color: #fff;
+    color: rgb(112, 112, 112);
+    font-family: 'Lato', 'Arial', sans-serif;
+    font-size: 20px;
+    font-weight: 300;
+    text-rendering: optimizeLegibility;
+    /* 效果在于city部分london右侧被遮掉了 */
+    overflow-x: hidden;
+}
+
+/* 牵涉到float，clear的知识点 */
+.clearfix{zoom: 1;}
+.clearfix:after{
+    content: '.';
+    clear: both;
+    display: block;
+    height: 0;
+}
+
+/* --------------------------------------------------- */
+/* REUSABLE COMPONENTS  */
+/* --------------------------------------------------- */
+
+.row{
+    max-width: 1140px;
+    /* 这是一种让元素居中的写法，我们还有一种缩写 
+    margin: 0 auto 0 auto; */ 
+    margin: 0 auto;
+}
+
+section{
+    padding: 80px 0;
+}
+
+.box{
+    padding: 1%;
+}
+
+/* ----- HEADING ----- */
+h1,
+h2,
+h3{
+    font-weight: 300;
+    text-transform: uppercase;
+}
+
+/* 这是两个class交叠的写法 */
+
+h1 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    color: #fff;
+    /* 这里指的是基于html里的font size乘2.4倍 */
+    font-size: 240%;
+    word-spacing: 4px;
+    letter-spacing: 1px;
+}
+
+h2 {
+    margin-bottom: 30px;
+    font-size: 180%;
+    word-spacing: 2px;
+    /* string居于row中间 */
+    text-align: center;
+    letter-spacing: 1px;
+}
+
+/* pseudo-class */
+h2::after{
+    /* block化，有margin padding这些东西 */
+    display: block;
+    /* 被制造出来的block高2px */
+    height: 2px;
+    background-color: #e67e22;
+    /* 不需要内容 */
+    content: ""; 
+    width: 100px;
+    /* 让这条线居中 */
+    margin: 0 auto;
+    margin-top: 30px;
+}
+
+h3{
+    font-size: 110%;
+    margin-bottom: 15px;
+}
+
+/* ----- PARAGRAPHS ----- */
+.long-copy{
+    /* 管理行间距?,应该不是行间距，而是整行高度 */
+    line-height: 145%;
+    /* 缩短字段长度 */
+    width: 70%;
+    /* 作者的小trick，其实是让字段居中 */
+    margin-left: 15%;
+}
+
+.box p{
+    font-size: 90%;
+    line-height: 145%;
+}
+
+/* ----- ICONS ----- */
+.icon-big{
+    font-size: 350%;
+    /* 真的有差，可能效果是icon被提高了，可能与10px有关 */
+    display: block;
+    color: #e67e22;
+    margin-bottom: 10px;
+}
+
+.icon-small{
+    display: inline-block;
+    color: #e67e22;
+    width: 30px;
+    text-align: center;
+    font-size: 120%;
+    margin-right: 10px;
+    
+    /* ?这个字体是怎么回事？调整icon位置 */
+    line-height: 120%;
+    text-align: middle;
+    margin-top: -4px;
+}
+
+/* ----- LINKS ----- */
+
+a:link,
+a:visited{
+    color: #e67e22;
+    /* 取掉下划线 */
+    text-decoration: none;
+    padding-bottom: 1px;
+    border-bottom: 1px solid #e67e22; 
+    -webkit-transition: border-bottom 0.2s, color 0.2s; 
+    transition: border-bottom 0.2s, color 0.2s;
+}
+
+a:hover,
+a:active{
+    color: #555;
+    border-bottom: 1px solid transparent;
+}
+/* ----- BUTTONS ----- */
+
+/* 这种写法(xxx:xxx)叫pseudo-class, 这样写可以让button在normal的状态和visited的状态表现相同 */
+.btn:link,
+.btn:visited, 
+input[type=submit] {
+    display: inline-block;
+    padding: 10px 30px;
+    font-size: 300;
+    /* 下面这个是去掉下划线的 */
+    text-decoration: none; 
+    border-radius: 200px;
+    /* 这里制造的是一个渐变的效果，从鼠标移到button开始，持续0.2秒 */
+    -webkit-transition: background-color 0.2s, border 0.2s, color 0.2s;
+    transition: background-color 0.2s, border 0.2s, color 0.2s;
+}
+
+.btn-full:link, 
+.btn-full:visited, 
+input[type=submit] {
+    color: #fff; 
+    background-color: #e67e22;
+    /* 这里用到flat ui colors网站 */
+    border: 1px solid #e67e22;
+    margin-right: 15px;
+}
+
+.btn-ghost:link,
+.btn-ghost:visited {
+    color: #e67e22;
+    border: 1px solid #e67e22;
+}
+
+.btn:hover,
+.btn:active, 
+input[type=submit]:hover, 
+input[type=submit]:active {
+    /* 这里我们想做一个效果，让按下去的按钮颜色变暗，这里用到一个找暗颜色的网站0to255 */
+    background-color: #cf6d17;
+}
+
+.btn-full:hover, 
+.btn-full:active {
+    border: 1px solid #cf6d17;
+}
+
+.btn-ghost:hover,
+.btn-ghost:active{
+    border: 1px solid #cf6d17;
+    color: #fff;
+}
+
+/* --------------------------------------------------- */
+/* HEADER */
+/* --------------------------------------------------- */
+
+header {
+    /* 背景颜色渐变 */
+    background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.7)), to(rgba(0, 0, 0, 0.7))), url(img/hero.jpg);
+    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(img/hero.jpg);
+    /* 让图片缩小 */
+    background-size: cover;
+    /* 且居中 */
+    background-position: center;
+    /* 这个操作硬生生把header的范围撑大了（大到整个荧幕） */
+    height: 100vh;
+    /* 但是我们还要解决margin问题 */
+
+    background-attachment: fixed;
+}
+
+.hero-text-box {
+    position: absolute;
+    /* 指定和row一样的长度 */
+    width: 1140px;
+    /* 这一套操作是为了让标题居中，left和top的50%是标题左上角相对于整个荧幕左上角的50%
+    而translate是相对与自身长度的50% */
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+}
+
+.logo {
+    height: 100px;
+    width: auto;
+    float: left;
+    margin-top: 20px;
+}
+
+.main-nav{
+    float: right;
+    /* 去掉list element的黑点 */
+    list-style: none;
+    margin-top: 55px;
+
+}
+
+/* 这种写法直接target了main-nav里的li element */
+.main-nav li {
+    /* 本来每个list element 是block类，现在改改，让它平行 */
+    display: inline-block;
+    margin-left: 40px;
+}
+
+/* 再次深入修改a的class */
+.main-nav li a:link,
+.main-nav li a:visited{
+    padding: 8px 0;
+    color: #fff;
+    text-decoration: none;
+    text-transform: uppercase;
+    /* 这里我们要18px = 20*0.9 */
+    font-size: 90%;
+    /* ?不解为什么要多此一举 */
+    border-bottom: 2px solid transparent;
+    -webkit-transition: border-bottom 0.2s;
+    transition: border-bottom 0.2s;
+}
+
+.main-nav li a:hover,
+.main-nav li a:active{
+    border-bottom: 2px solid #e67e22;
+}
+
+/* --------------------------------------------------- */
+/* FEATURES */
+/* --------------------------------------------------- */
+
+/* 这里用了一个trick。因为我们不像让每个long-copy的bottom都有margin，所以我们直接选section-feature里的long-copy */
+.section-features .long-copy{
+    margin-bottom: 30px;
+}
+
+/* --------------------------------------------------- */
+/* MEALS */
+/* --------------------------------------------------- */
+.section-meals{
+    padding: 0;
+}
+
+.meals-showcase{
+    list-style: none;
+    width: 100%;
+}
+
+.meals-showcase li {
+    /* 把图片转化为块模型 */
+    display: block;
+    /* 让这些图片一个一个排起来 */
+    float: left;
+    width: 25%;
+}
+
+.meal-photo{
+    /* 占满父类的25% */
+    width: 100%;
+    /* 这个margin 0是为了overwrite引入的CSS file (vendors/CSS/normalize.css) */
+    margin: 0;
+    /* 这句是为了把溢出的图片部分藏起来，不然浏览器还会出现slider bar */
+    overflow: hidden;
+    background-color: black;
+}
+
+.meal-photo img{
+    width: 100%;
+    height: auto;
+    /* 放大1.15倍, ？transform值得好好研究 */
+    -webkit-transform: scale(1.15);
+            transform: scale(1.15);
+    /* 透明度为0.7, 1为完全不透明 */
+    opacity: 0.7;
+    -webkit-transition: opacity 0.5s, -webkit-transform 0.5s;
+    transition: opacity 0.5s, -webkit-transform 0.5s;
+    transition: transform 0.5s, opacity 0.5s;
+    transition: transform 0.5s, opacity 0.5s, -webkit-transform 0.5s;
+}
+
+.meal-photo img:hover{
+    opacity: 1;
+    -webkit-transform: scale(1.03);
+            transform: scale(1.03);
+}
+
+/* --------------------------------------------------- */
+/* HOW IT WORKS */
+/* --------------------------------------------------- */
+
+.section-steps{
+    /* 这个灰色背景是神来之笔，区隔开这个section和下一个section */
+    background-color: #f4f4f4;
+}
+
+/* .steps-box {
+    margin-top: 30px;   ?无意义的重复
+} */
+
+/* CSS特制的pseudo class，选定第一个child element */
+.steps-box:first-child {
+    /* The text align property doesn't work only for text
+    it actually does work for all in line, or
+    in line block elements and the image is one of
+    those inline block elements. */
+    text-align: right;
+    /* 这里用3%为了web responsible化 */
+    padding-right: 3%; 
+    margin-top: 30px;
+}
+/* 选定第二个pseudo class，这里是显示文字的那个div */
+.steps-box:last-child {
+    padding-left: 3%;
+    margin-top: 70px;
+}
+
+.app-screen{
+    width: 40%;
+}
+
+.works-step{
+    margin-bottom: 50px;
+}
+
+/* ?这个的作用有点像last-child */
+.works-step:last-of-type{
+    margin-bottom: 80px;
+}
+
+.works-step div{
+    color: #e67e22;
+    border: 2px solid #e67e22;
+    /* 这里把这个div设成是inline-block，但是网页上的效果还是分开的 */
+    /* display: inline-block; */
+    /* 下面三个参数都是让border变圆 */
+    border-radius: 50%;
+    height: 55px;
+    width: 55px;
+    /* 让数字居中 */
+    text-align: center;
+    padding: 5px;
+    /* 这个指令的效果才是让数字和 那段话肩并肩
+    这里提示float这个property的生效直接让display转化成block */
+    float: left;
+    font-size: 150%;
+    margin-right: 25px;
+}
+
+.btn-app:link,
+.btn-app:visited{
+    border: 0;
+}
+
+.btn-app img{
+    height: 50px;
+    width: auto;
+    margin-right: 10px;
+}
+
+/* --------------------------------------------------- */
+/* CITIES */
+/* --------------------------------------------------- */
+.box img{
+    width: 100%;
+    height: auto;
+    margin-bottom: 15px;
+}
+
+.city-feature{
+    margin-bottom: 5px;
+}
+
+/* --------------------------------------------------- */
+/* TESTIMONIALS */
+/* --------------------------------------------------- */
+.section-testimonials {
+    background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.8)), to(rgba(0, 0, 0, 0.8))), url(img/back-customers.jpg);
+    background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url(img/back-customers.jpg);
+    /* 将背景填满 */
+    background-size: cover;
+    color: #fff;
+    /* 酷炫效果，页面动图不动 */
+    background-attachment: fixed;
+}
+
+blockquote{
+    padding: 2%;
+    font-style: italic;
+    line-height: 145%;
+    position: relative;
+    margin-top: 40px;
+}
+
+blockquote:before{
+    /* from glyphs-css */
+    content: '\201C';
+    font-size: 500%;
+    display: block;
+    position: absolute;
+    top: -5px;
+    left: -5px;
+}
+
+cite{
+    font-size: 90%;
+    margin-top: 25px;
+    display: block;
+}
+
+cite img{
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 10px;
+    vertical-align: middle;
+}
+
+/* --------------------------------------------------- */
+/* SIGN UP */
+/* --------------------------------------------------- */
+
+.section-plans{
+    /* 这个section大背景灰色 */
+    background-color: #f4f4f4;
+}
+
+/* 为什么要在col里再加一个div，是因为我们还要再对这个col进行操作
+而如果直接对col那个div进行操作，不方便（比如调整宽度为90%） */
+.plan-box{
+    background-color: #fff; 
+    border-radius: 5px;
+    /* 先设置宽度90%，再让他居中 */
+    width: 90%;
+    margin-left: 5%;
+    /* 阴影效果 */
+    -webkit-box-shadow: 0 2px 2px #efefef;
+            box-shadow: 0 2px 2px #efefef;
+}
+
+.plan-box div{
+    padding: 15px;
+    border-bottom: 1px solid #e8e8e8;
+}
+
+.plan-box div:first-child{
+    background-color: #fcfcfc;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.plan-box div:last-child{
+     text-align: center; 
+     /* 最后一个div就不要分隔线了 */
+     border: 0;
+}
+
+.plan-price{
+    font-size: 300%;
+    margin-bottom: 10px;
+    font-weight: 100;
+    color: #e67e22;
+}
+
+.plan-price span{
+    /* 这里选用30%的原因是，span是plan-price的child，所以继承了父元素的font-size */
+    font-size: 30%;
+    font-weight: 300;
+}
+
+.plan-price-meal{
+    font-size: 80%;
+}
+
+.plan-box ul{
+    list-style: none;
+}
+
+.plan-box ul li{
+    padding: 5px 0;
+}
+
+/* --------------------------------------------------- */
+/* FORM */
+/* --------------------------------------------------- */
+
+.contact-form{
+    /* 两个col整的拉到中间来 */
+    width: 60%;
+    /* 居中 */
+    margin: 0 auto;
+}
+
+/* 新的selector方式 */
+input[type=text],
+input[type=email],
+select,
+textarea{
+    width: 100%;
+    padding: 7px;
+    border-radius: 3px;
+    border: 1px solid #ccc;
+}
+
+textarea{
+    height: 100px;
+}
+
+input[type=checkbox]{
+    margin: 10px 5px 10px 0;
+}
+
+/* 这个指令是消除field选定特效的 */
+*:focus {
+    outline: none;
+}
+
+/* --------------------------------------------------- */
+/* FOOTER */
+/* --------------------------------------------------- */
+
+footer{
+    background-color: #333;
+    padding: 50px;
+    font-size: 80%;
+} 
+
+.footer-nav{
+    list-style: none;
+    float: left;
+} 
+
+.social-links{
+    /* 去bulletpoint */
+    list-style: none;
+    float: right;
+}
+
+.footer-nav li,
+.social-links li{
+    display: inline-block;
+    margin-right: 20px;
+}
+
+.footer-nav li:last-child,
+.social-links li:last-child{
+    margin-right: 0px;
+}
+
+.footer-nav li a:link,
+.footer-nav li a:visited,
+.social-links li a:link,
+.social-links li a:visited{
+    /* 去下划线 */
+    text-decoration: none;
+    border: 0;
+    color: #888;
+    -webkit-transition: color 0.2s;
+    transition: color 0.2s;
+}
+
+.footer-nav li a:hover,
+.footer li a:active{
+    color: #ddd;
+}
+
+.social-links li a:link,
+.social-links li a:visited{
+     font-size: 160%;
+}
+
+.ion-social-facebook,
+.ion-social-googleplus,
+.ion-social-instagram,
+.ion-social-twitter{
+    -webkit-transition: color 0.2s;
+    transition: color 0.2s;
+}
+
+.ion-social-facebook:hover{
+    color: #3b5998;
+}
+
+.ion-social-twitter:hover{
+    color: #00aced;
+}
+
+.ion-social-googleplus:hover{
+    color: #dd4b39;
+}
+
+.ion-social-instagram:hover{
+    color: #517fa4;
+}
+
+footer p{
+    color: #888;
+    text-align: center;
+    margin-top: 20px;
+}
+
