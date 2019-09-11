@@ -21,17 +21,19 @@ html {
     font-size: 20px;
     font-weight: 300;
     text-rendering: optimizeLegibility;
-    /* 效果在于city部分london右侧被遮掉了 */
+    /* 效果在于city部分London右侧被遮掉了 */
     overflow-x: hidden;
 }
 
-/* 牵涉到float，clear的知识点 */
+/* 牵涉到float，clear的知识点。这个zoom: 1是为了给IE6浏览器用的，
+   因为IE6不支持after等的伪类（好像是这个说法）.这个不要深究，好像微软工程师都说不清 */
 .clearfix{zoom: 1;}
 .clearfix:after{
     content: '.';
     clear: both;
     display: block;
     height: 0;
+    visibility: hidden;
 }
 
 /* --------------------------------------------------- */
@@ -104,7 +106,7 @@ h3{
 
 /* ----- PARAGRAPHS ----- */
 .long-copy{
-    /* 管理行间距?,应该不是行间距，而是整行高度 */
+    /* 应该不是行间距，而是整行高度,145%指的是font-size的1.45倍 */
     line-height: 145%;
     /* 缩短字段长度 */
     width: 70%;
@@ -134,7 +136,7 @@ h3{
     font-size: 120%;
     margin-right: 10px;
     
-    /* ?这个字体是怎么回事？调整icon位置 */
+    /* 这个字体是怎么回事, 调整icon位置 */
     line-height: 120%;
     text-align: middle;
     margin-top: -4px;
@@ -162,7 +164,7 @@ a:active{
 
 /* 这种写法(xxx:xxx)叫pseudo-class, 这样写可以让button在normal的状态和visited的状态表现相同 */
 .btn:link,
-.btn:visited, 
+.btn:visited,
 input[type=submit] {
     display: inline-block;
     padding: 10px 30px;
@@ -248,12 +250,20 @@ header {
     margin-top: 20px;
 }
 
+.logo-black {
+    display: none;
+    height: 50px;
+    width: auto;
+    float: left;
+    margin: 5px 0;
+}
+
+/* Main navi */
 .main-nav{
     float: right;
     /* 去掉list element的黑点 */
     list-style: none;
     margin-top: 55px;
-
 }
 
 /* 这种写法直接target了main-nav里的li element */
@@ -282,6 +292,31 @@ header {
 .main-nav li a:active{
     border-bottom: 2px solid #e67e22;
 }
+
+/* Sticky navi */
+.sticky{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background:rgba(255, 255, 255, 0.98); 
+    box-shadow: 0 2px 2px #f0f0f0;
+    /* z-index代表了被这个CSS修饰的元素在z向stack中的什么位置，数值越大越上层。
+    9999是最大值，保证这个element一定出现在user的视野中 */
+    z-index: 9999;
+}
+
+.sticky .main-nav { margin-top: 18px; }
+
+.sticky .main-nav li a:link,
+.sticky .main-nav li a:visited{
+    /* 让orange line离nav的text更远 */
+    padding: 16px 0;
+    color: #555;
+}
+
+.sticky .logo-black { display: block; }
+.sticky .logo { display: none; }
 
 /* --------------------------------------------------- */
 /* FEATURES */
@@ -392,8 +427,8 @@ header {
     /* display: inline-block; */
     /* 下面三个参数都是让border变圆 */
     border-radius: 50%;
-    height: 55px;
-    width: 55px;
+    height: 54px;
+    width: 54px;
     /* 让数字居中 */
     text-align: center;
     padding: 5px;
@@ -501,6 +536,7 @@ cite img{
 
 .plan-box div:first-child{
     background-color: #fcfcfc;
+    /* 这里的两个props并不是多余的，因为border-radius并不是可继承属性 */
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
 }

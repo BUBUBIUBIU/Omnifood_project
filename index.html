@@ -24,12 +24,14 @@
                 <!-- 为啥 row always be centered?-->
                 <div class="row">
                     <img src="resources/img/logo-white.png" alt="Omnifood logo" class="logo">
+                    <img src="resources/img/logo.png" alt="Omnifood logo" class="logo-black">
                     <!-- 把nav bar里面的button做成link -->
                     <ul class="main-nav">
-                        <li><a href="#">Food delivery</a></li>
-                        <li><a href="#">How it works</a></li>
-                        <li><a href="#">Our cities</a></li>
-                        <li><a href="#">Sign up</a></li>
+                        <!-- 这里做好在navigation中的anchor -->
+                        <li><a href="#features">Food delivery</a></li>
+                        <li><a href="#works">How it works</a></li>
+                        <li><a href="#cities">Our cities</a></li>
+                        <li><a href="#plans">Sign up</a></li>
                     </ul>
                 </div>
             </nav>
@@ -37,13 +39,13 @@
             <div class="hero-text-box">
                 <h1>Goodbye junk food. <br/> Hello super healthy meals.</h1>
                 <!-- class的效果是叠加的，这里的element a是inline element，我们现在想让他变成inline block-->
-                <a class="btn btn-full" href="#">I’m hungry</a>
-                <a class="btn btn-ghost" href="#">Show me more</a>
+                <a class="btn btn-full js--scroll-to-plans" href="#">I’m hungry</a>
+                <a class="btn btn-ghost js--scroll-to-start" href="#">Show me more</a>
             </div>
 
         </header>
 
-        <section class="section-features">
+        <section class="section-features js--section-features" id="features">
             <!-- 让这个block居中 -->
             <div class="row">
                 <!-- 这个&mdash是HTML特别的code -->
@@ -133,7 +135,7 @@
             </ul>
         </section>
 
-        <section class="section-steps">
+        <section class="section-steps" id='works'>
             <div class="row">
                 <h2>How it works &mdash; Simple as 1, 2, 3</h2>
             </div>
@@ -145,17 +147,17 @@
                     
                 <div class="col span-1-of-2 steps-box">
 
-                    <div class="works-step">
+                    <div class="works-step clearfix">
                         <div>1</div>
                         <p>Choose the subscription plan that best fits your needs and sign up today.</p>
                     </div>
 
-                    <div class="works-step">
+                    <div class="works-step clearfix">
                         <div>2</div>
                         <p>Order your delicious meal using our mobile app or website. Or you can even call us!</p>
                     </div>
 
-                    <div class="works-step">
+                    <div class="works-step clearfix">
                         <div>3</div>
                         <p>Enjoy your meal after less than 20 minutes. See you the next time!</p>
                     </div>
@@ -168,7 +170,7 @@
             </div>
         </section>
 
-        <section class="section-cities">
+        <section class="section-cities" id="cities">
             <div class="row">
                 <h2>We're currently in these cities</h2>
             </div>
@@ -278,7 +280,7 @@
             </div>
         </section>
 
-        <section class="section-plans">
+        <section class="section-plans js--section-plans" id="plans">
             <div class="row">
                 <h2>Start eating healthy today</h2>
             </div>
@@ -476,13 +478,22 @@
                 </p>
             </div>
         </footer>
+
+        
+        <!-- 从Google引入jQuery库 -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <!-- 为了responsive -->
+        <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+        <!-- 为了让老版本的IE browser适应html5 -->
+        <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+        <!-- 为了让老的浏览器用CSS3的一些功能 -->
+        <script src="https://cdn.jsdelivr.net/npm/selectivizr@1.0.3/selectivizr.min.js"></script>
+        <!-- 引入jQuery的JS文件 -->
+        <script src="./resources/js/script.js"></script>
+        <!-- 把jQuery的plug-in引入进来 -->
+        <script src="./vendors/js/jquery.waypoints.min.js"></script>
     </body>
 
-    <!-- 为了responsive -->
-    <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
-    <!-- 为了让老版本的IE browser适应html5 -->
-    <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
-    <!-- 为了让老的浏览器用CSS3的一些功能 -->
-    <script src="https://cdn.jsdelivr.net/npm/selectivizr@1.0.3/selectivizr.min.js"></script>
+    
 </html>
 
