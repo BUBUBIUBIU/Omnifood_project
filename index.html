@@ -5,6 +5,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <!-- 解决中文引号的问题 -->
         <meta charset="utf-8">
+        <!-- 引入动画css -->
+        <link rel="stylesheet" type="text/css" href="vendors/CSS/animate.css">
 
         <link rel="stylesheet" type="text/css" href="vendors/CSS/normalize.css">
         <link rel="stylesheet" type="text/css" href="vendors/CSS/grid.css">
@@ -18,21 +20,24 @@
 
         <!-- ？header处理一下，不太懂，且具有一定意义，能被Google engine识别 -->
         <header>
-            <!-- 没见过，研究一下 nav element -->
+            <!-- 没见过，研究一下 nav element. Done -->
             <nav>
-                <!-- 这里猜测，可能nav不是block element，所以放个div把它block化，不然为啥要放div？ -->
-                <!-- 为啥 row always be centered?-->
+                <!-- 这里猜测，可能nav不是block element，所以放个div把它block化，不然为啥要放div?
+                     nav是block element -->
+                <!-- 用row修饰的元素一般都是center的，因为row设置了margin: 0 auto -->
                 <div class="row">
                     <img src="resources/img/logo-white.png" alt="Omnifood logo" class="logo">
                     <img src="resources/img/logo.png" alt="Omnifood logo" class="logo-black">
                     <!-- 把nav bar里面的button做成link -->
-                    <ul class="main-nav">
+                    <ul class="main-nav js--main-nav">
                         <!-- 这里做好在navigation中的anchor -->
                         <li><a href="#features">Food delivery</a></li>
                         <li><a href="#works">How it works</a></li>
                         <li><a href="#cities">Our cities</a></li>
                         <li><a href="#plans">Sign up</a></li>
                     </ul>
+                    <!-- a tag的元素没有href props，鼠标放在他身上就不会有手的标志 -->
+                    <a class="mobile-nav-icon js--nav-icon"><i class="ion-navicon-round"></i></a>
                 </div>
             </nav>
 
@@ -54,7 +59,7 @@
             </div>
 
             <!-- 先让他居中 -->
-            <div class="row">
+            <div class="row js--wp-1">
                 <!-- 这个col class来自外部grid包 -->
                 <div class="col span-1-of-4 box">
                     <i class="ion-ios-infinite-outline icon-big"></i>
@@ -142,7 +147,7 @@
 
             <div class="row">
                 <div class="col span-1-of-2 steps-box">
-                    <img src="resources/img/app-iPhone.png" alt="Omnifood app on iphone" class="app-screen">
+                    <img src="resources/img/app-iPhone.png" alt="Omnifood app on iphone" class="app-screen js--wp-2">
                 </div>
                     
                 <div class="col span-1-of-2 steps-box">
@@ -175,7 +180,7 @@
                 <h2>We're currently in these cities</h2>
             </div>
 
-            <div class="row">
+            <div class="row js--wp-3">
 
                 <div class="col span-1-of-4 box">
                     <img src="resources/img/lisbon-3.jpg" alt="Lisbon">
@@ -287,7 +292,7 @@
 
             <div class="row">
                 <div class="col span-1-of-3">
-                    <div class="plan-box">
+                    <div class="plan-box js--wp-4">
                         <div>
                             <h3>Premium</h3>
                             <p class="plan-price">$399 <span>/ month</span> </p>

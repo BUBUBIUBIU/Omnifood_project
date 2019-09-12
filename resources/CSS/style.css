@@ -293,6 +293,19 @@ header {
     border-bottom: 2px solid #e67e22;
 }
 
+/* Mobile navi */
+.mobile-nav-icon{
+    float: right;
+    margin-top: 30px;
+    cursor: pointer;
+    display: none;
+}
+
+.mobile-nav-icon i {
+    font-size: 200%;
+    color: #fff;
+}
+
 /* Sticky navi */
 .sticky{
     position: fixed;
@@ -691,3 +704,28 @@ footer p{
     margin-top: 20px;
 }
 
+/* --------------------------------------------------- */
+/* ANIMATION */
+/* --------------------------------------------------- */
+.js--wp-1,
+.js--wp-2,
+.js--wp-3{
+    /* 先让动画出现前的那部分消失 */
+    opacity: 0 ;
+    /* 控制持续时间 */
+    -webkit-animation-duration: 1s;
+            animation-duration: 1s;
+}
+
+.js--wp-4{
+    -webkit-animation-duration: 1s;
+            animation-duration: 1s;
+}
+
+/* 这种写法是and写法，两个class是并列关系。说明两者中都有opacity: 1这个props
+   .js--wp-1 .xxx 这种是包含关系 */
+.js--wp-1.animated,
+.js--wp-2.animated,
+.js--wp-3.animated{
+    opacity: 1;
+}
