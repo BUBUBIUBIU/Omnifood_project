@@ -511,6 +511,30 @@
         <script src="./resources/js/script.js"></script>
         <!-- 把jQuery的plug-in引入进来 -->
         <script src="./vendors/js/jquery.waypoints.min.js"></script>
+
+        <!-- The core Firebase JS SDK is always required and must be listed first -->
+        <script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-app.js"></script>
+
+        <!-- TODO: Add SDKs for Firebase products that you want to use
+            https://firebase.google.com/docs/web/setup#available-libraries -->
+        <script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-analytics.js"></script>
+
+        <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyALpwVDi91veEvUQldXTaGvkN7L-NIElQM",
+            authDomain: "omnifood-ce8c6.firebaseapp.com",
+            databaseURL: "https://omnifood-ce8c6.firebaseio.com",
+            projectId: "omnifood-ce8c6",
+            storageBucket: "omnifood-ce8c6.appspot.com",
+            messagingSenderId: "102634294068",
+            appId: "1:102634294068:web:be249a7279ee6d109c7361",
+            measurementId: "G-W4B1R06EW3"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        firebase.analytics();
+        </script>
     </body>
 
     
